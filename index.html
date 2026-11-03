@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PromptVault – AI prompt &amp; snippet manager</title>
+  <meta name="description" content="Save your favorite AI prompts and text snippets in categorized cards and copy them with one click.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8B%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">📋</span>
+      <div>
+        <h1>PromptVault</h1>
+        <p>Your best prompts, one click away.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch light or dark theme">🌓</button>
+      <button id="addBtn" class="btn primary" type="button">+ New prompt</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="toolbar" aria-label="Search and filter">
+      <input id="search" type="search" placeholder="Search by title or text…" aria-label="Search prompts" autocomplete="off">
+      <div id="chips" class="chips" role="group" aria-label="Filter by category"></div>
+    </section>
+
+    <p id="count" class="count" aria-live="polite"></p>
+    <section id="grid" class="grid" aria-label="Saved prompts"></section>
+
+    <div id="empty" class="empty" hidden>
+      <p class="empty-title">Nothing here yet</p>
+      <p>Click “New prompt” to save your first prompt or snippet.</p>
+    </div>
+  </main>
+
+  <dialog id="dialog" aria-labelledby="dialogTitle">
+    <form id="form" novalidate>
+      <h2 id="dialogTitle">New prompt</h2>
+
+      <label for="fTitle">Title</label>
+      <input id="fTitle" type="text" maxlength="60" placeholder="e.g. Explain like I'm five" required>
+
+      <label for="fCategory">Category</label>
+      <input id="fCategory" type="text" maxlength="24" list="catList" placeholder="Pick one or type a new one" required>
+      <datalist id="catList"></datalist>
+
+      <label for="fContent">Prompt or snippet</label>
+      <textarea id="fContent" rows="7" placeholder="Paste or write your text here…" required></textarea>
+
+      <p id="formError" class="form-error" role="alert" hidden>Please fill in all three fields.</p>
+
+      <div class="dialog-actions">
+        <button type="button" id="cancelBtn" class="btn ghost">Cancel</button>
+        <button type="submit" class="btn primary">Save prompt</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
